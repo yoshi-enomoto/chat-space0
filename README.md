@@ -20,7 +20,7 @@
 - その他、未定
 
 
-#Structure of DataBase
+# Structure of DataBase
 
 ## membersテーブル
 |Column|Type|Options|
