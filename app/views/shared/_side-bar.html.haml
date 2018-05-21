@@ -1,1 +1,21 @@
-side-bar
+.header
+  %h3.header__name
+    user_name
+    / ：未実装　= current_user.name
+  %ul.header__lists
+    %li.list
+      / ：未実装　= link_to new_group_path do
+      = fa_icon "edit", class: "icon"
+    %li.list
+      / ：未実装　= link_to edit_user_path(current_user) do
+      = fa_icon "cog", class: "icon"
+.groups
+  / ：未実装　- current_user.groups.each do |group|
+  .group
+    / ：未実装　= link_to group_messages_path(group) do
+    .group__name
+      / ：未実装　= group.group_name
+      group_name
+    .group__message
+      / ：未実装　= group.show_last_message
+      group_message

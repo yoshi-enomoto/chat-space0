@@ -1,1 +1,45 @@
-chat
+.header
+  .left-header
+    .left-header__title
+      / ：未実装　=@group.group_name
+      group_namee
+    %ul.left-header__members
+      Member：person of member
+      -#
+        ：未実装　
+        - @group.users.each do |f|
+          %li.left-header__member
+            = f.name
+  .right-header
+    edit button
+    / ：未実装　= link_to "Edit", edit_group_path(@group.id), class: "right-header__button"
+
+.messages
+  .message
+    -# ：未実装　.message{"data-message-id": "#{message.id}"}
+    .upper-message
+      .upper-message__user-name
+        sender of message
+        / ：未実装　= message.user.name
+      .upper-message__date
+        date of message
+        / ：未実装　= format_posted_time(message.created_at)
+    .lower-meesage
+      contents of message
+      -#
+        ：未実装　
+        - if message.body.present?
+          %p.lower-message__content
+            = message.body
+        = image_tag message.image.url, class: 'lower-message__image' if message.image.present?
+
+.form
+  -#
+    ：未実装　
+    = form_for [@group, @message] do |f|
+      = f.text_field :body, class: "form__message", placeholder: "type a message"
+      .form__mask
+        = f.label :image, class: "form__mask__image" do
+          = fa_icon "picture-o", class: "icon"
+          = f.file_field :image, class: "hidden"
+      = f.submit "Send", class: "form__submit"
