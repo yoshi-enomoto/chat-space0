@@ -2,15 +2,15 @@
   -# 画面左上部分
   .header
     %h3.header__name
-      user_name
-      / ：未実装　= current_user.name
+      = current_user.name
     %ul.header__lists
       %li.list
         / ：未実装　= link_to new_group_path do
         = fa_icon "edit", class: "icon"
       %li.list
-        / ：未実装　= link_to edit_user_path(current_user) do
-        = fa_icon "cog", class: "icon"
+        = link_to edit_user_path(current_user) do
+          -# <a href="">~~</a>で記述の際、『~~』の部分が『fa_icon』にあたる書き方
+          = fa_icon "cog", class: "icon"
 
   -# 画面左部分
   .groups

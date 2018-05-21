@@ -1,0 +1,16 @@
+-# registrationsのeditから引用中
+%h2
+  Edit
+= form_for(current_user) do |f|
+  .field
+    = f.label :name
+    %br/
+    = f.text_field :name
+  .field
+    = f.label :email
+    %br/
+    = f.email_field :email
+  .actions
+    = f.submit "Update"
+= link_to "Back", root_path
+-# = link_to "Back", :back  ユーザーページを何人か経由した場合、この方法ではトップページに戻れない為。
