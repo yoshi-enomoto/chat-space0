@@ -1,2 +1,8 @@
 .notification
-  / notificatnion area
+  - flash.each do |key, value|
+    = content_tag :div, value, class: key
+    -# HTMLタグを生成するもの。第一引数にタグ、第二引数に内容、第三引数にオプション（ classなど）。
+    -# 『binding.pry』で『flash』と打つと、そのハッシュの中に色々入っている。
+
+    -#下記の書き方でもOK
+    -#%div{class: "#{key}"}= value
