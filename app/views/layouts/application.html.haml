@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title ChatSpace0
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    = render "shared/notification"
+    -# 『layouts』内の部分テンプレートを参照したい場合は『layouts』を付ける。
+    -# 付けないと『messages』配下の部分テンプレート参照となる。
+    = yield
