@@ -7,8 +7,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    .notification
-      = render "shared/notification"
-      / 『layouts』内の部分テンプレートを参照したい場合は『layouts』を付ける。
-      / 付けないと『messages』配下の部分テンプレート参照となる。
+    = render "shared/notification"
+    -# 『layouts』内の部分テンプレートを参照したい場合は『layouts』を付ける。
+    -# 付けないと『messages』配下の部分テンプレート参照となる。
     = yield
