@@ -5,8 +5,8 @@
       = current_user.name
     %ul.header__lists
       %li.list
-        / ：未実装　= link_to new_group_path do
-        = fa_icon "edit", class: "icon"
+        = link_to new_group_path do
+          = fa_icon "edit", class: "icon"
       %li.list
         = link_to edit_user_path(current_user) do
           -# <a href="">~~</a>で記述の際、『~~』の部分が『fa_icon』にあたる書き方
