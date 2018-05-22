@@ -1,16 +1,25 @@
 .chat-group-form
   %h1 新規チャットグループ
   %form#new_chat_group.new_chat_group{"accept-charset" => "UTF-8", action: "/chat_groups", method: "post"}
+
+  = form_for @group do |f|
+
     .chat-group-form__errors
       %h2
         数件のエラーが発生しました。
         %ul
           %li エラーです
+
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
-        %label.chat-group-form__label{for: "chat_group_name"} グループ名
+        = f.label :name, "グループ名", class: "chat-group-form__label"
+        -# 『@group』でform_forを生成しているので、そのモデルの名前が先頭に付く。
+        -# %label.chat-group-form__label{for: "chat_group_name"} グループ名：旧記述
       .chat-group-form__field--right
-        %input#chat_group_name.chat-group-form__input{name: "chat_group[name]", placeholder: "グループ名を入力してください", type: "text"}
+        = f.text_field :name, placeholder: "グループ名入力してください", class: "chat-group-form__input", id: "xxx"
+        -# 『name』の前にそのモデルの名前が付く。
+        -# %input#chat_group_name.chat-group-form__input{name: "chat_group[name]", placeholder: "グループ名を入力してください", type: "text"}：旧記述
+
     .chat-group-form__field.clearfix
       / この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します
       /
@@ -23,6 +32,7 @@
         </div>
         <div id='user-search-result'></div>
         </div>
+
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
         %label.chat-group-form__label{for: "chat_group_チャットメンバー"} チャットメンバー
@@ -36,7 +46,9 @@
           <p class='chat-group-user__name'>seo_kyohei</p>
           </div>
           </div>
+
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
       .chat-group-form__field--right
-        %input.chat-group-form__action-btn{"data-disable-with" => "Save", name: "commit", type: "submit", value: "Save"}
+        = f.submit "Save", class: "chat-group-form__action-btn"
+        -# %input.chat-group-form__action-btn{"data-disable-with" => "Save", name: "commit", type: "submit", value: "Save"}：旧記述
