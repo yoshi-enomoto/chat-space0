@@ -9,11 +9,11 @@
       .chat-group-form__errors
         %h2
           #{@group.errors.full_messages.count}件のエラーが発生しました。
-
-          %ul
-            - @group.errors.full_messages.each do |e_messa|
-              -# 『@group.errors.full_messages』自体が配列なので、そこから展開させる。
-              %li= e_messa
+        %ul
+          - @group.errors.full_messages.each do |e_messa|
+            -# 『@group.errors.full_messages』自体が配列なので、そこから展開させる。
+            %li
+              ※ #{e_messa}
 
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
