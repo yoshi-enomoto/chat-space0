@@ -57,3 +57,4 @@
       .chat-group-form__field--right
         = f.submit "Save", class: "chat-group-form__action-btn"
         -# %input.chat-group-form__action-btn{"data-disable-with" => "Save", name: "commit", type: "submit", value: "Save"}：旧記述
+        = link_to "Back", :back, class: "chat-group-form__page-header-btn"
