@@ -3,18 +3,14 @@
   .header
     .left-header
       .left-header__title
-        / ：未実装　=@group.group_name
-        group_namee
+        =@group.name
       %ul.left-header__members
-        Member：person of member
-        -#
-          ：未実装　
-          - @group.users.each do |f|
-            %li.left-header__member
-              = f.name
+        Member：
+        - @group.users.each do |f|
+          %li.left-header__member
+            = f.name
     .right-header
-      edit button
-      / ：未実装　= link_to "Edit", edit_group_path(@group.id), class: "right-header__button"
+      = link_to "Edit", edit_group_path(@group.id), class: "right-header__button"
 
   -# 画面右部分
   .messages
