@@ -33,8 +33,12 @@
     padding: 0 20px;
     overflow: scroll;
     .group {
+      a {
+        text-decoration: none;
+      }
       padding: 20px 0 40px;
       box-sizing: border-box;
+      text-decoration: none;
       &__name {
         font-size: 15px;
         color: $white;
