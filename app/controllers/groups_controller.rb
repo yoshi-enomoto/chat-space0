@@ -24,9 +24,17 @@ class GroupsController < ApplicationController
   end
 
   def edit
+    @group = Group.find(params[:id])
   end
 
   def update
+    @group = Group.find(params[:id])
+    if @group.update(group_params)
+    #『update』メソッド時、どれに対して更新させるか引数を与えてやる。
+      redirect_to root_path, notice: "グループ作成更新完了"
+    else
+      render :edit
+    end
   end
 
   private
