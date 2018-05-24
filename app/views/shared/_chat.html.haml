@@ -34,18 +34,10 @@
 
   -# 画面右下部分
   .form
-    = text_field_tag :body, "", class: "form__message", placeholder: "type a message"
-    .form__mask
-      = label_tag :image, class: "form__mask__image" do
-        = fa_icon "picture-o", class: "icon"
-        = file_field_tag :image, class: "hidden"
-    = submit_tag "Send", class: "form__submit"
-    -#
-      ：未実装　
-      = form_for [@group, @message] do |f|
-        = f.text_field :body, class: "form__message", placeholder: "type a message"
-        .form__mask
-          = f.label :image, class: "form__mask__image" do
-            = fa_icon "picture-o", class: "icon"
-            = f.file_field :image, class: "hidden"
-        = f.submit "Send", class: "form__submit"
+    = form_for [@group, @message] do |f|
+      = f.text_field :body, class: "form__message", placeholder: "type a message"
+      .form__mask
+        = f.label :image, class: "form__mask__image" do
+          = fa_icon "picture-o", class: "icon"
+          = f.file_field :image, class: "hidden"
+      = f.submit "Send", class: "form__submit"
