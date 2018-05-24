@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+  before_action :set_group, only: [:edit, :update]
+
   def new
     @group = Group.new
     @group.users << current_user
@@ -23,15 +25,15 @@ class GroupsController < ApplicationController
     # グループ作成の過程中、『notice、alert』以外のキー指定では表示不可（原因不明）
   end
 
-  def edit
-    @group = Group.find(params[:id])
-  end
+  # def edit 『set_group』により、このアクションで定義することがなくなるので、コメアウト
+  #   # @group = Group.find(params[:id]) 『set_group』により、コメアウト
+  # end
 
   def update
-    @group = Group.find(params[:id])
+    # @group = Group.find(params[:id]) 『set_group』により、コメアウト
     if @group.update(group_params)
     #『update』メソッド時、どれに対して更新させるか引数を与えてやる。
-      redirect_to root_path, notice: "グループ作成更新完了"
+      redirect_to root_path, notice: "グループ更新完了"
     else
       render :edit
     end
@@ -45,5 +47,9 @@ class GroupsController < ApplicationController
       # 今回、memberテーブルへレコード保存時、『group_id』が入力出来ないエラーが発生。
       # →テーブルの仕様『null:false』を削除することで回避。
       # 旧chat-spaceではその仕様を削除せずにmemberテーブルへレコード保存出来たので、今回この様になってしまった理由が気になるところ。
+  end
+
+  def set_group
+    @group = Group.find(params[:id])
   end
 end
