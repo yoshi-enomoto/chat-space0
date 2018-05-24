@@ -5,8 +5,8 @@
       = current_user.name
     %ul.header__lists
       %li.list
-        / ：未実装　= link_to new_group_path do
-        = fa_icon "edit", class: "icon"
+        = link_to new_group_path do
+          = fa_icon "edit", class: "icon"
       %li.list
         = link_to edit_user_path(current_user) do
           -# <a href="">~~</a>で記述の際、『~~』の部分が『fa_icon』にあたる書き方
@@ -14,12 +14,11 @@
 
   -# 画面左部分
   .groups
-    / ：未実装　- current_user.groups.each do |group|
-    .group
-      / ：未実装　= link_to group_messages_path(group) do
-      .group__name
-        / ：未実装　= group.group_name
-        group_name
-      .group__message
-        / ：未実装　= group.show_last_message
-        group_message
+    - current_user.groups.each do |group|
+      .group
+        / ：未実装　= link_to group_messages_path(group) do
+        .group__name
+          = group.name
+        .group__message
+          / ：未実装　= group.show_last_message
+          group_message

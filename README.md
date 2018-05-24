@@ -20,13 +20,13 @@
 - その他、未定
 
 
-#Structure of DataBase
+# Structure of DataBase
 
 ## membersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_id|references|null: false, foreign_key: true|
-|group_id|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
+|group|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :group
@@ -62,7 +62,7 @@
 ## groupsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|group_name|string|null: false|
+|name|string|null: false, foreign_key: true, index: true|
 
 ### Association
 - has_many :users, through: :members
