@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:edit, :update]
+  # 『only:』以降の書き方は『routes.rb』などと一緒
 
   def new
     @group = Group.new
