@@ -15,6 +15,9 @@
     .chat-group-form__field--left
       = f.label :xxx, "グループ名", class: "chat-group-form__label"
       -# 『@group』でform_forを生成しているので、for属性の値はそのモデルの名前が先頭に付く。
+      -# 『:xxx』の箇所を『:name』に戻すと、『"グループ名"』が不要となる。
+      -# （『.¥ja.yml』で設定している為）
+
       -# %label.chat-group-form__label{for: "chat_group_name"} グループ名：旧記述
     .chat-group-form__field--right
       = f.text_field :name, placeholder: "グループ名入力してください", class: "chat-group-form__input", id: "group_xxx"
