@@ -6,10 +6,8 @@
     .upper-message__date
       = format_posted_time(message.created_at)
   .lower-meesage
-    = message.body
-    -#
-      ：未実装　
-      - if message.body.present?
-        %p.lower-message__content
-          = message.body
-      = image_tag message.image.url, class: 'lower-message__image' if message.image.present?
+    - if message.body.present?
+      -# 『if』文がないと、空の際にエラーとなる。
+      %p.lower-message__content
+        = message.body
+    = image_tag message.image.url, class: 'lower-message__image' if message.image.present?
