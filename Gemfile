@@ -57,3 +57,5 @@ gem 'haml-rails'
 gem 'erb2haml'
 gem 'devise'
 gem "font-awesome-rails"
+gem 'carrierwave'
+gem 'mini_magick'
