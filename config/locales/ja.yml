@@ -3,9 +3,12 @@ ja:
     # modelなどの自分で作成したものは、下記の様に定義する必要がある。
     models:
       group:
+      user: ユーザー
     attributes:
       group:
         name: グループ名
+      user:
+        name: ユーザー名
 
     errors:
       messages:

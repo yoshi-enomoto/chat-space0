@@ -1,3 +1,20 @@
 .wrapper
   = render "shared/side-bar"
   = render "shared/chat"
+
+-#
+  部分テンプレートの検証用の為に、下記と『_message.html.haml』を残す。
+  .chat
+    -# 画面右上部分
+    .header
+
+    -# 画面右部分
+    .messages
+      = render partial: 'message', collection: @messages
+      -# = render @messages
+      -# インスタンス変数が@messages、部分テンプレートが_message〜の場合、記法を省略することが可能。（複数形の変数と部分テンプレ名称が単数形で同じ場合）
+      -# その場合、コントローラーフォルダ直下に保存されていることが条件。（この場合、『views/mesages』直下に『_message.〜』での保存が条件。）
+      -# 『_chat.html.haml』でも『= render @messages』による記述が可能。
+
+    -# 画面右下部分
+    .form

@@ -16,9 +16,9 @@
   .groups
     - current_user.groups.each do |group|
       .group
-        / ：未実装　= link_to group_messages_path(group) do
-        .group__name
-          = group.name
-        .group__message
-          / ：未実装　= group.show_last_message
-          group_message
+        = link_to group_messages_path(group) do
+          -# = link_to group_messages_path(group.id) do：この書き方でも良い。
+          .group__name
+            = group.name
+          .group__message
+            = group.show_last_message

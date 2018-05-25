@@ -16,6 +16,9 @@
 未定
 
 ## 特記事項
+- DB設計は独自案をベースにしている為、解答通りではない。
+（メッセージのテキスト型、インデックスの設定の無しなど）
+- 外部キーへの『null: false』は、エラーが一度起こった観点から設定を解除している。
 - サーバーサイド側を主に復習する為、フロント側は前回作成時のものを引用する（予定）
 - その他、未定
 
@@ -38,8 +41,8 @@
 |------|----|-------|
 |body|text|-|
 |image|string|-|
-|group_id|references|null: false, foreign_key: true|
-|user_id|references|null: false, foreign_key: true|
+|user|references|foreign_key: true|
+|group|references|foreign_key: true|
 
 ### Association
 - belongs_to :user

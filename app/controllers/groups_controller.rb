@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:edit, :update]
+  # 『only:』以降の書き方は『routes.rb』などと一緒
 
   def new
     @group = Group.new
@@ -17,7 +18,10 @@ class GroupsController < ApplicationController
     # 『@group.user_ids』でグループ作成時に加えたuser_idが取得可能。
 
     if @group.save #『b』
-      redirect_to root_path, notice: "グループ作成完了"
+      # redirect_to root_path, notice: "グループ作成完了"：初期作成時の設定
+      redirect_to group_messages_path(@group), notice: "グループ作成完了"
+      # モデルを引数として渡すと、そのモデルはIDに変換される=『id』を渡すでも問題無し。
+      # 『@group』なら、前述で定義している。『group』は定義していないので、不可。
     else
       render :new
     end
@@ -33,7 +37,8 @@ class GroupsController < ApplicationController
     # @group = Group.find(params[:id]) 『set_group』により、コメアウト
     if @group.update(group_params)
     #『update』メソッド時、どれに対して更新させるか引数を与えてやる。
-      redirect_to root_path, notice: "グループ更新完了"
+      # redirect_to root_path, notice: "グループ更新完了"：初期作成時の設定
+      redirect_to group_messages_path(@group.id), notice: "グループ更新完了"
     else
       render :edit
     end
