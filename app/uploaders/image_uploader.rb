@@ -1,7 +1,11 @@
 class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
+  # 下記のいずれかをコメアウト解除する（それ経由で画像のリサイズを行うようにする為）
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
+
+  # 画像のリサイズ変更のため
+  process resize_to_fit: [800, 800]
 
   # Choose what kind of storage to use for this uploader:
   storage :file
