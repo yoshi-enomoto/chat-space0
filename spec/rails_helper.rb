@@ -30,6 +30,15 @@ RSpec.configure do |config|
   # 下記の1行を追加する事で、レシーバーの記述が省略可能。
   config.include FactoryGirl::Syntax::Methods
 
+  # 『support』ディレクトリを読み込ませる設定？
+  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+  # deviseのテストヘルパーをロードする
+  config.include Devise::Test::ControllerHelpers, type: :controller
+    #『devise』バージョンが4.1.0未満の場合の記述
+    # config.include Devise::TestHelpers, type: :controller
+  # 作成したログインモジュールを追加する
+  config.include ControllerMacros, type: :controller
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
