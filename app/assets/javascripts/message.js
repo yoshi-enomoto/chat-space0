@@ -45,10 +45,15 @@ $(function(){
     })
 
     .done(function(data){
+      // 通信成功時の処理確認
+      // console.log("success!");
+      // console.log(data);
       var html = buildHTML(data);
       $(".messages").append(html);
       $(".form__message").val("");
       $(".hidden").val("");
+      // submitボタンに付加される『disabled』属性を消す（送信不可を解除する）
+      $(".form__submit").removeAttr("disabled");
 
     })
 

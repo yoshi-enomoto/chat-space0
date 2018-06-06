@@ -30,3 +30,4 @@
           = fa_icon "picture-o", class: "icon"
           = f.file_field :image, class: "hidden"
       = f.submit "Send", class: "form__submit"
+      -# 『, disabled: ""』が上記submit に存在すると、送信ボタンは機能しなくなる。
