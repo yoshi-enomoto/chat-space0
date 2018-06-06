@@ -1,4 +1,7 @@
 $(function() {
+  // htmlを差し込む要素名を変数定義
+  var search_user = $("#user-search-result");
+
   // jqオブジェクトを変数定義
   var $input = $("#group_user-search-field");
 
@@ -15,6 +18,16 @@ $(function() {
     })
 
     .done(function(users) {
+      search_user.empty();
+
+      if (users.length !== 0){
+        users.forEach(function(user){
+          appendUser(user);
+        });
+      }
+      else {
+        appendNoUser("一致するユーザーはいません");
+      }
     })
     .fail(function() {
       alert("ユーザー検索に失敗しました。");
