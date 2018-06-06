@@ -14,6 +14,12 @@ $(function() {
       dataType: "json"
     })
 
+    .done(function(users) {
+    })
+    .fail(function() {
+      alert("ユーザー検索に失敗しました。");
+    })
+
   });
 
 });
