@@ -19,7 +19,12 @@ class MessagesController < ApplicationController
     # 『~es.new』とすることで、単体用のインスタンスが生成可能。
 
     if @message.save
-      redirect_to group_messages_path(@group), notice: "メッセージ送信完了"
+      # 非同期通信用にコメアウト
+      # redirect_to group_messages_path(@group), notice: "メッセージ送信完了"
+      respond_to do |format|
+        format.html { redirect_to group_messages_path(@group), notice: "メッセージ送信完了" }
+        format.json
+      end
     else
       # 『flash』は記述の順番が重要（後に記述すると表示されない）
       flash.now[:alert] = "メッセージを入力してください。"
