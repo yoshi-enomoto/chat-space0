@@ -1,4 +1,13 @@
 class UsersController < ApplicationController
+  def index
+    # moooviの応用。
+    @users = User.where("name LIKE(?)", "%#{params[:keyword]}%")
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
   def edit
     # @user = User.find(params[:id]) ：『current_user』で引き出せるから不要
   end
