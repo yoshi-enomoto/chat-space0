@@ -4,7 +4,17 @@ $(function(){
   // 下記は指定したform要素、中全てを取得=thisの利便性向上（ajax通信時に楽）
   $("#new_message").on("submit", function(e) {
     e.preventDefault();
-    console.log(this);
+    var formData = new FormData(this);
+    var url = $(this).attr("action");
+
+    $.ajax({
+      url: url,
+      type: "post",
+      data: formData,
+      dataType: "json",
+      processData: false,
+      contentType: false
+    })
 
   });
 });
