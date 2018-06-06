@@ -54,6 +54,9 @@ $(function(){
       $(".hidden").val("");
       // submitボタンに付加される『disabled』属性を消す（送信不可を解除する）
       $(".form__submit").removeAttr("disabled");
+      // ？？？配列の0番目の要素のheight（padding込み）を取得し、？？？
+      // 通常通り、速度、動作パターンを設定することは可能。
+      $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight}, 1000, "swing");
 
     })
 
