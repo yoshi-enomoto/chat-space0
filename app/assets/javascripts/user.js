@@ -2,6 +2,7 @@ $(function() {
   // htmlを差し込む要素名を変数定義
   var search_user = $("#user-search-result");
 
+  // 検索結果に差し込むhtml（結果ありver）
   function appendUser(user) {
     var html = `<div class="chat-group-user clearfix">
                   <p class="chat-group-user__name">${user.name}</p>
@@ -9,7 +10,7 @@ $(function() {
                 </div>`
     search_user.append(html);
   }
-
+  // 検索結果に差し込むhtml（結果なしver）
   function appendNoUser(user) {
     var html = `<div class="chat-group-user clearfix">
                   <p class="chat-group-user__name">${user}</p>
@@ -18,35 +19,38 @@ $(function() {
   }
 
   // jqオブジェクトを変数定義
-  var $input = $("#group_user-search-field");
+  var $input = $("#user-search-field");
 
-  // 本処理ー『チャットメンバーを追加』エリアにユーザーの表示
+  // 本処理『チャットメンバーを追加』エリアにユーザーの表示(検索結果)
   $input.on("keyup",function(){
     var input = $input.val();
 
-    $.ajax({
-      type: "get",
-      // 『url』には入力内容の保存先ではなく、検索をする元になるインスタンス変数があるアクションを動かすurlを指定する。
-      url: "/users",
-      data: { keyword: input },
-      dataType: "json"
-    })
+    // 文字列以外の入力で検索結果が表示されないようにする
+    if (input.length !== 0){
+      $.ajax({
+        type: "get",
+        // 『url』には入力内容の保存先ではなく、検索をする元になるインスタンス変数があるアクションを動かすurlを指定する。
+        url: "/users",
+        data: { keyword: input },
+        dataType: "json"
+      })
 
-    .done(function(users) {
-      search_user.empty();
+      .done(function(users) {
+        search_user.empty();
 
-      if (users.length !== 0){
-        users.forEach(function(user){
-          appendUser(user);
-        });
-      }
-      else {
-        appendNoUser("一致するユーザーはいません");
-      }
-    })
-    .fail(function() {
-      alert("ユーザー検索に失敗しました。");
-    })
+        if (users.length !== 0){
+          users.forEach(function(user){
+            appendUser(user);
+          });
+        }
+        else {
+          appendNoUser("一致するユーザーはいません");
+        }
+      })
+      .fail(function() {
+        alert("ユーザー検索に失敗しました。");
+      })
+    }
 
   });
 
