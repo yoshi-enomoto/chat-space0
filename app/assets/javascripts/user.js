@@ -54,6 +54,20 @@ $(function() {
 
   });
 
+  //『チャットメンバー』エリアへ差し込むhtml
+  var $add_user = $("#chat-group-users");
+
+  function addUser(userid, username) {
+    var html = `<div class='chat-group-user clearfix js-chat-member' id='chat-group-user-${userid}'>
+                  <input name='group[user_ids][]' type='hidden' value='${userid}'>
+                  <p class='chat-group-user__name'>${username}</p>
+                  <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</a>
+                </div>`
+
+    $add_user.append(html);
+    // $("#chat-group-users").append(html);
+  }
+
   // 本処理『チャットメンバーを追加』エリアの追加ボタン
   $(document).on("click", ".user-search-add", function() {
     // 『document』と『window』について、中身・詳細確認の為
