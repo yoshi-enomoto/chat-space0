@@ -56,6 +56,10 @@ $(function() {
 
   // 本処理『チャットメンバーを追加』エリアの追加ボタン
   $(document).on("click", ".user-search-add", function() {
+    // 『document』と『window』について、中身・詳細確認の為
+    // console.log(document);
+    // console.log(window);
+
     // このタイミングで変数に代入して、関数呼び出し時に引数で渡し、関数内で使用可能。
     // ２つの違いは？
     var userid = $(this).attr("data-user-id");
