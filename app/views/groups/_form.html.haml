@@ -11,6 +11,7 @@
           %li
             ※ #{e_messa}
 
+  -# グループ名エリア
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
       = f.label :xxx, "グループ名", class: "chat-group-form__label"
@@ -27,7 +28,16 @@
 
       -# %input#chat_group_name.chat-group-form__input{name: "chat_group[name]", placeholder: "グループ名を入力してください", type: "text"}：旧記述
 
+  -# チャットメンバー追加エリア
+  -# 『collection_check_boxes』削除後、設定
   .chat-group-form__field.clearfix
+    .chat-group-form__field--left
+      = label_tag :"user-search-field", "チャットメンバーを追加", class: "chat-group-form__label"
+    .chat-group-form__field--right
+      .chat-group-form__search.clearfix
+        = text_field_tag :keyword, "", placeholder: "追加したいユーザー名を入力してください", class: "chat-group-form__input", id: "user-search-field"
+      #user-search-result
+
     / この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します
     /
       <div class='chat-group-form__field--left'>
@@ -40,12 +50,14 @@
       <div id='user-search-result'></div>
       </div>
 
+  -# チャットメンバー表示エリア
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
+      / = label_tag :"chat_group_チャットメンバー","チャットメンバー" , class: "chat-group-form__label"：これだと、for属性の『チャットメンバー』はhtmlでは表示されない。
       %label.chat-group-form__label{for: "chat_group_チャットメンバー"} チャットメンバー
     .chat-group-form__field--right
-      = f.collection_check_boxes :user_ids, User.all, :id, :name, include_hidden: false do |b|
-        = b.label { b.check_box + b.text }
+      -# = f.collection_check_boxes :user_ids, User.all, :id, :name, include_hidden: false do |b|
+        -# = b.label { b.check_box + b.text }
         -# 『, include~』以降を削除することで、上1行は省略可能
         -# 『collection_check_boxes』は標準で4~6の引数を必要とする。
         -# 引数の順番(プロパティ名, オブジェクトの配列, value属性の項目, テキストの項目 [, オプション])
@@ -53,6 +65,30 @@
         -# 『User.all』を『@user』にすることでC側から受けることも可能。（配列展開）
         -# 第3引数はDB渡す値について（この場合、中間にuser_idを保存させる意味）
         -# 第4引数はhtmlでのテキスト文章（この場合、idに対応するユーザー名の意味）
+
+      #chat-group-users
+        / 動的エリア挿入前の、静的エリア（参照の為）
+        / .chat-group-user.clearfix
+        /   / {id: "chat-group-user-#{current_user.id}"}
+        /   %input{type: "hidden", value: "#{current_user.id}", name: "group[user_ids][]"}
+        /   / <input type="checkbox" value="2" name="group[user_ids][]" id="group_user_ids_2">
+        /   / <input name="group[user_ids][]" type="hidden" value="4062">
+        /   %p.chat-group-user__name
+        /     =current_user.name
+        /   -# %a.user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn
+        /     -# 削除
+
+        -# グループ編集画面時、既存メンバー表示の為
+        - @group.users.each do |f|
+          .chat-group-user.clearfix
+            -# = hidden_field_tag :"group[user_ids][]", "#{f.id}"
+            -# 『= f.hidden_field』ではエラーとなってしまう。
+            %input{type: "hidden", value: "#{f.id}", name: "group[user_ids][]"}
+            %p.chat-group-user__name
+              = f.name
+            - unless f.id == current_user.id
+              %a.user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn
+                削除
 
       / グループ作成機能の追加時はここにcollection_check_boxesの記述を入れてください
       / この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します
@@ -64,6 +100,7 @@
         </div>
         </div>
 
+  -# ボタンエリア
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
     .chat-group-form__field--right
