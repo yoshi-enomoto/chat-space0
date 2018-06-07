@@ -29,10 +29,10 @@
 
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
-      = f.label :"user-search-field", "チャットメンバーを追加", class: "chat-group-form__label"
+      = label_tag :"user-search-field", "チャットメンバーを追加", class: "chat-group-form__label"
     .chat-group-form__field--right
       .chat-group-form__search.clearfix
-        = f.text_field :name, placeholder: "追加したいユーザー名を入力してください", class: "chat-group-form__input", id: "group_user-search-field"
+        = text_field_tag :keyword, "", placeholder: "追加したいユーザー名を入力してください", class: "chat-group-form__input", id: "user-search-field"
       #user-search-result
 
 
@@ -52,8 +52,8 @@
     .chat-group-form__field--left
       %label.chat-group-form__label{for: "chat_group_チャットメンバー"} チャットメンバー
     .chat-group-form__field--right
-      = f.collection_check_boxes :user_ids, User.all, :id, :name, include_hidden: false do |b|
-        = b.label { b.check_box + b.text }
+      -# = f.collection_check_boxes :user_ids, User.all, :id, :name, include_hidden: false do |b|
+        -# = b.label { b.check_box + b.text }
         -# 『, include~』以降を削除することで、上1行は省略可能
         -# 『collection_check_boxes』は標準で4~6の引数を必要とする。
         -# 引数の順番(プロパティ名, オブジェクトの配列, value属性の項目, テキストの項目 [, オプション])
