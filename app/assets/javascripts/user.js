@@ -1,4 +1,7 @@
-$(function() {
+// ページ遷移後に非同期通信を適用させる為、記述変更。
+// 記述を変更させない場合、『turblinks』を削除する必要あり。
+$(document).on('turbolinks:load', function() {
+// $(function() {
   // htmlを差し込む要素名を変数定義
   var search_user = $("#user-search-result");
 
