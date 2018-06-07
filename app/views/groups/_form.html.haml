@@ -11,6 +11,7 @@
           %li
             ※ #{e_messa}
 
+  -# グループ名エリア
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
       = f.label :xxx, "グループ名", class: "chat-group-form__label"
@@ -27,6 +28,8 @@
 
       -# %input#chat_group_name.chat-group-form__input{name: "chat_group[name]", placeholder: "グループ名を入力してください", type: "text"}：旧記述
 
+  -# チャットメンバー追加エリア
+  -# 『collection_check_boxes』削除後、設定
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
       = label_tag :"user-search-field", "チャットメンバーを追加", class: "chat-group-form__label"
@@ -34,7 +37,6 @@
       .chat-group-form__search.clearfix
         = text_field_tag :keyword, "", placeholder: "追加したいユーザー名を入力してください", class: "chat-group-form__input", id: "user-search-field"
       #user-search-result
-
 
     / この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します
     /
@@ -48,6 +50,7 @@
       <div id='user-search-result'></div>
       </div>
 
+  -# チャットメンバー表示エリア
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
       %label.chat-group-form__label{for: "chat_group_チャットメンバー"} チャットメンバー
@@ -63,6 +66,7 @@
         -# 第4引数はhtmlでのテキスト文章（この場合、idに対応するユーザー名の意味）
 
       #chat-group-users
+        / 動的エリア挿入前の、静的エリア（参照の為）
         / .chat-group-user.clearfix
         /   / {id: "chat-group-user-#{current_user.id}"}
         /   %input{type: "hidden", value: "#{current_user.id}", name: "group[user_ids][]"}
@@ -73,6 +77,7 @@
         /   -# %a.user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn
         /     -# 削除
 
+        -# グループ編集画面時、既存メンバー表示の為
         - @group.users.each do |f|
           .chat-group-user.clearfix
             %input{type: "hidden", value: "#{f.id}", name: "group[user_ids][]"}
@@ -92,6 +97,7 @@
         </div>
         </div>
 
+  -# ボタンエリア
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
     .chat-group-form__field--right
