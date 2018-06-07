@@ -54,4 +54,8 @@ $(function() {
 
   });
 
+  // 本処理『チャットメンバーを追加』エリアの追加ボタン
+  $(document).on("click", ".user-search-add", function() {
+  });
+
 });
