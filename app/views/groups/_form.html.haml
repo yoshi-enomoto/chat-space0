@@ -62,6 +62,26 @@
         -# 第3引数はDB渡す値について（この場合、中間にuser_idを保存させる意味）
         -# 第4引数はhtmlでのテキスト文章（この場合、idに対応するユーザー名の意味）
 
+      #chat-group-users
+        / .chat-group-user.clearfix
+        /   / {id: "chat-group-user-#{current_user.id}"}
+        /   %input{type: "hidden", value: "#{current_user.id}", name: "group[user_ids][]"}
+        /   / <input type="checkbox" value="2" name="group[user_ids][]" id="group_user_ids_2">
+        /   / <input name="group[user_ids][]" type="hidden" value="4062">
+        /   %p.chat-group-user__name
+        /     =current_user.name
+        /   -# %a.user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn
+        /     -# 削除
+
+        - @group.users.each do |f|
+          .chat-group-user.clearfix
+            %input{type: "hidden", value: "#{f.id}", name: "group[user_ids][]"}
+            %p.chat-group-user__name
+              = f.name
+            - unless f.id == current_user.id
+              %a.user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn
+                削除
+
       / グループ作成機能の追加時はここにcollection_check_boxesの記述を入れてください
       / この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します
       /
