@@ -90,4 +90,9 @@ $(document).on('turbolinks:load', function() {
     addUser(userid, username);
   });
 
+  // 本処理『チャットメンバー』エリアの削除ボタン
+  $(document).on("click", ".user-search-remove", function() {
+    $(this).parent().remove();
+  });
+
 });
