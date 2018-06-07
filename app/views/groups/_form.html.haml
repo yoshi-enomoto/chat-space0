@@ -53,6 +53,7 @@
   -# チャットメンバー表示エリア
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
+      / = label_tag :"chat_group_チャットメンバー","チャットメンバー" , class: "chat-group-form__label"：これだと、for属性の『チャットメンバー』はhtmlでは表示されない。
       %label.chat-group-form__label{for: "chat_group_チャットメンバー"} チャットメンバー
     .chat-group-form__field--right
       -# = f.collection_check_boxes :user_ids, User.all, :id, :name, include_hidden: false do |b|
@@ -80,6 +81,8 @@
         -# グループ編集画面時、既存メンバー表示の為
         - @group.users.each do |f|
           .chat-group-user.clearfix
+            -# = hidden_field_tag :"group[user_ids][]", "#{f.id}"
+            -# 『= f.hidden_field』ではエラーとなってしまう。
             %input{type: "hidden", value: "#{f.id}", name: "group[user_ids][]"}
             %p.chat-group-user__name
               = f.name
