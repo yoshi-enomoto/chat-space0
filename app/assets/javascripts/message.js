@@ -1,5 +1,8 @@
-$(function(){
-
+// ページ遷移後に非同期通信を適用させる為、記述変更。
+// $(function(){
+$(document).on('turbolinks:load', function() {
+  // この位置に『$(function(){』を設置しないで問題無し（上記で賄う）
+  // ビューに差し込むhtmlの関数
   function buildHTML(message) {
     // メッセージテキストの三項演算子
     var body = message.body ?`<p class="lower-message__content">
@@ -27,6 +30,7 @@ $(function(){
     return html;
   }
 
+  // メッセージ送信機能の非同期通信
   // 下記は指定した要素のみを取得
   // $(".form__submit").on("click", function(e) {
   // 下記は指定したform要素、中全てを取得=thisの利便性向上（ajax通信時に楽）
@@ -65,4 +69,7 @@ $(function(){
 
     })
   });
+
+  // メッセージの自動更新
+
 });
