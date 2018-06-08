@@ -95,6 +95,12 @@ $(document).on('turbolinks:load', function() {
     // ->つまり、数字の繰り返し（2桁でも3桁でもOK）
       // フロー確認用
       // console.log(true);
+      $.ajax({
+        url: location.href,
+        type: "get",
+        dataType: "json"
+        // 『data:』など、送るデータが無ければ設ける必要無し。
+      })
     } else {
     }
   }
