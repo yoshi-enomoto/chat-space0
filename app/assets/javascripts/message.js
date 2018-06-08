@@ -75,7 +75,28 @@ $(document).on('turbolinks:load', function() {
   // ページ遷移時、最新までスクロールさせる為に追加。
   $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight}, 1000, "swing");
 
+  // 自動更新用の関数
   function update() {
+    // 条件分岐確認の為のコンソール
+    // console.log(location.href);
+    // console.log(location);
+    // console.log(window.location);
+    // var x = window.location.href.split("/");
+    // console.log(x);
+    // var y = x[3] + x[4] + x[5]
+    // console.log(y);
+
+    // メッセージ画面のURLi一致の条件分岐
+    if (location.href.match(/\/groups\/\d+\/messages/)){
+    // 『/\/groups\/\d+\/messages/』について
+    // 実質、『\/groups\/\d+\/messages』
+    // 『\』はエスケープ（特殊記号を通常の記号文字として使用する意味）
+    //『\d』は数字、『+』は付加した文字の1文字以上の繰り返しを意味する。
+    // ->つまり、数字の繰り返し（2桁でも3桁でもOK）
+      // フロー確認用
+      // console.log(true);
+    } else {
+    }
   }
 
 });
