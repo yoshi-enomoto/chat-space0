@@ -71,5 +71,11 @@ $(document).on('turbolinks:load', function() {
   });
 
   // メッセージの自動更新
+  var interval = setInterval(update, 5000);
+  // ページ遷移時、最新までスクロールさせる為に追加。
+  $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight}, 1000, "swing");
+
+  function update() {
+  }
 
 });
