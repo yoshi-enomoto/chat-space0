@@ -90,6 +90,7 @@ $(document).on('turbolinks:load', function() {
       // メッセージ画面のURL一致の条件分岐
       if (location.href.match(/\/groups\/\d+\/messages/)){
         // ページ遷移時、最新までスクロールさせる為に追加。
+        // 実行させるページのことを考え、ここに記述。
         $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight}, 1000, "swing");
       // 『/\/groups\/\d+\/messages/』について
       // 実質、『\/groups\/\d+\/messages』
