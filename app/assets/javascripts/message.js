@@ -104,6 +104,27 @@ $(document).on('turbolinks:load', function() {
         // 『data:』など、送るデータが無ければ設ける必要無し。
       })
       .done(function(data) {
+        // ページ読み込み＆生成時に存在している要素の取得（一番最後に投稿されたもの）
+        // 『:last』とすることで一番最後が取得可能（css）
+        // 対象要素に新たなに『data属性』を付与してやる。
+        // この段階では引数dataはまだ使用していない。
+        var id = $(".message:last").data("message-id");
+        // 現在表示しているページの複数あるdiv『message』から最後を対象として指定し、ビュー側で独自に複数作成したdata属性の引数で指定したものを取得。
+
+        // この段階で、引数dataを活用する。
+        // jbuilderで指定したキー『messages』について展開。
+        data.messages.forEach(function(message){
+
+          // 複数のものを１つずつmessageへ展開時、そのid値が『var id』の値を超えているかを条件式とする。
+          // 超えている＝ページ生成時以降に新たにメッセージの送信が発生している。
+          // その時のみ、htmlを差し込む処理をする。
+          if (message.id > id){
+          // 条件式がないと、表示ページ該当するメッセージを展開し、その都度差し込んでしまう
+            var html = buildHTML(message);
+            $(".messages").append(html);
+            $(".messages").animate({scrollTop: $(".messages")[0].scrollHeight}, 1000, "swing");
+          }
+        });
       })
       .fail(function() {
         alert("更新に失敗しました。");
