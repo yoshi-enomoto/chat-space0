@@ -54,8 +54,10 @@ $(document).on('turbolinks:load', function() {
       // console.log(data);
       var html = buildHTML(data);
       $(".messages").append(html);
-      $(".form__message").val("");
-      $(".hidden").val("");
+      // 下記１行で『.val("")』の2行を賄える。
+      $("#new_message")[0].reset();
+      // $(".form__message").val("");
+      // $(".hidden").val("");
       // submitボタンに付加される『disabled』属性を消す（送信不可を解除する）
       $(".form__submit").removeAttr("disabled");
       // ？？？配列の0番目の要素のheight（padding込み）を取得し、？？？
