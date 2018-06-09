@@ -9,6 +9,11 @@ class MessagesController < ApplicationController
     # pictweet時もユーザー関連で、今回も『group』や『message』ではなく『:user』としている
       # @messages = Message.all
       # 上記の記述では、グループに関係なく全てのメッセージを取得してしまう。
+    respond_to do |format|
+      # {}で渡すのはリダイレクトや通知のみで、インスタンス変数は渡さない。
+      format.html
+      format.json
+    end
   end
 
   def create
