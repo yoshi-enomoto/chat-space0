@@ -130,6 +130,7 @@ $(document).on('turbolinks:load', function() {
         alert("更新に失敗しました。");
       });
     } else {
+      // setIntervalを解除する処理
       clearInterval(interval);
       // フロー確認用
       // console.log(false);
