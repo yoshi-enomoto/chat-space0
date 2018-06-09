@@ -103,6 +103,11 @@ $(document).on('turbolinks:load', function() {
         dataType: "json"
         // 『data:』など、送るデータが無ければ設ける必要無し。
       })
+      .done(function(data) {
+      })
+      .fail(function() {
+        alert("更新に失敗しました。");
+      });
     } else {
       clearInterval(interval);
       // フロー確認用
