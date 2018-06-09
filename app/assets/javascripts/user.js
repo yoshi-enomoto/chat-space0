@@ -1,3 +1,5 @@
+//  ※結合されるので、ファイル名による管理にはならない。
+
 // ページ遷移後に非同期通信を適用させる為、記述変更。
 // 記述を変更させない場合、『turblinks』を削除する必要あり。
 $(document).on('turbolinks:load', function() {
@@ -74,8 +76,8 @@ $(document).on('turbolinks:load', function() {
   // 本処理『チャットメンバーを追加』エリアの追加ボタン
   $(document).on("click", ".user-search-add", function() {
     // 『document』と『window』について、中身・詳細確認の為
-    // console.log(document);
-    // console.log(window);
+    // console.log(document); ：html要素
+    // console.log(window);   ：オブジェクト？全般が格納されている
 
     // このタイミングで変数に代入して、関数呼び出し時に引数で渡し、関数内で使用可能。
     // ２つの違いは？
