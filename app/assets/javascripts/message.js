@@ -86,7 +86,7 @@ $(document).on('turbolinks:load', function() {
     // var y = x[3] + x[4] + x[5]
     // console.log(y);
 
-    // メッセージ画面のURLi一致の条件分岐
+    // メッセージ画面のURL一致の条件分岐
     if (location.href.match(/\/groups\/\d+\/messages/)){
     // 『/\/groups\/\d+\/messages/』について
     // 実質、『\/groups\/\d+\/messages』
@@ -102,6 +102,9 @@ $(document).on('turbolinks:load', function() {
         // 『data:』など、送るデータが無ければ設ける必要無し。
       })
     } else {
+      clearInterval(interval);
+      // フロー確認用
+      // console.log(false);
     }
   }
 
